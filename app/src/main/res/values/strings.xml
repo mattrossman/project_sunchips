@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Tutorial</string>
+    <string name="display_car_button"> My Car </string>
+    <string name="start_trip_button"> Start Trip </string>
+    <string name="stop_trip_button"> Stop Trip </string>
+    <string name="display_report_button"> My Report </string>
+    <string name="add_new_car_button"> Add New Car </string>
+    <string name="make_form_help_text"> Make </string>
+    <string name="model_form_help_text"> Model </string>
+    <string name="mileage_form_help_text"> Mileage </string>
+</resources>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.andrew.tutorial.DisplayCarFormActivity">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="51dp"
+        android:text="Add your submission"
+        app:layout_constraintBottom_toTopOf="@+id/make_input"
+        app:layout_constraintTop_toBottomOf="@+id/guideline"
+        tools:layout_editor_absoluteX="116dp" />
+
+    <EditText
+        android:id="@+id/mileage_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/mileage_form_help_text"
+        android:inputType="numberDecimal"
+        app:layout_constraintBottom_toTopOf="@+id/button6"
+        app:layout_constraintTop_toBottomOf="@+id/year_input"
+        tools:layout_editor_absoluteX="73dp" />
+
+    <EditText
+        android:id="@+id/make_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/make_form_help_text"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/model_input"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        tools:layout_editor_absoluteX="73dp" />
+
+    <EditText
+        android:id="@+id/model_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/model_form_help_text"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/year_input"
+        app:layout_constraintTop_toBottomOf="@+id/make_input"
+        tools:layout_editor_absoluteX="73dp" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="20dp" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="35dp" />
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="submitCar"
+        android:text="@string/add_new_car_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mileage_input" />
+
+    <EditText
+        android:id="@+id/year_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Year"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/mileage_input"
+        app:layout_constraintTop_toBottomOf="@+id/model_input"
+        tools:layout_editor_absoluteX="72dp" />
+
+</android.support.constraint.ConstraintLayout>
