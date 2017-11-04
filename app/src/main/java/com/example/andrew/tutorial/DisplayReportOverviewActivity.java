@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import java.util.Vector;
+
 /*
 This displays the overall average cost of the past years' overviews and then displays links to
 those years' report overviews. Recent reports are displayed first, vertically descending

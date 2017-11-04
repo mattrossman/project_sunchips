@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
     public static Vehicle myCar;
     public static Trip activeTrip;
     public static boolean isOnTrip;
+    private static Report myReport;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
