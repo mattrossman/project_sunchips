@@ -23,7 +23,7 @@ import java.util.Map;
  * Created by Matt on 11/4/2017.
  */
 
-public class RequestTask<T> {
+public class RequestTask {
     /* A RequestTask runs a unique set of commands and updates necessary parts of the app UI */
 
 
@@ -36,20 +36,17 @@ public class RequestTask<T> {
         mActivity = activity;
     }
 
-    public T handler(JSONObject obj) throws JSONException {
-        return null;
-    }
+    public void handler(JSONObject obj) throws JSONException { }
 
-    public T run(String response) {
+    public void run(String response) {
         try {
             System.out.println("Response: "+response);
             JSONObject obj = parseXML(response);
-            return handler(obj);
+            handler(obj);
         }
         catch (JSONException je){
             System.out.println("Problem handling the response");
             System.out.println(je.toString());
-            return null;
         }
     }
 
@@ -59,12 +56,12 @@ public class RequestTask<T> {
 
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-            new Response.Listener<String>() {
-                @Override
-                public void onResponse(String response) {
-                    RequestTask.this.run(response);
-                }
-            }, new Response.ErrorListener() {
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        RequestTask.this.run(response);
+                    }
+                }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError e) {
                 System.out.println("That didn't work!");
@@ -86,7 +83,7 @@ public class RequestTask<T> {
     }
 }
 
-class PriceRequest extends RequestTask<String> {
+class PriceRequest extends RequestTask {
     private String grade;
     public PriceRequest(Activity activity, String grade) {
         super(activity);
@@ -94,12 +91,11 @@ class PriceRequest extends RequestTask<String> {
     }
 
     @Override
-    public String handler(JSONObject obj) throws JSONException {
+    public void handler(JSONObject obj) throws JSONException {
         TextView tvPrice = (TextView) mActivity.findViewById(R.id.textView);
         JSONObject prices = obj.getJSONObject("fuelPrices");
         String price = Double.toString(prices.getDouble(grade));
         tvPrice.setText(price);
-        return price;
     }
 
     public void request() {
@@ -107,13 +103,13 @@ class PriceRequest extends RequestTask<String> {
     }
 }
 
-class YearsRequest extends RequestTask <String[]>{
+class YearsRequest extends RequestTask {
     public YearsRequest(Activity activity) {
         super(activity);
     }
 
     @Override
-    public String[] handler(JSONObject yearsObj) throws JSONException {
+    public void handler(JSONObject yearsObj) throws JSONException {
         if (yearsObj.get("menuItems").getClass()==JSONObject.class) {
             JSONArray jaYears = yearsObj.getJSONObject("menuItems").getJSONArray("menuItem");
             String[] years = new String[jaYears.length()];
@@ -122,9 +118,7 @@ class YearsRequest extends RequestTask <String[]>{
 
             Dropdown d = new Dropdown(mActivity, mActivity.findViewById(R.id.yearsSpinner));
             d.updateOptions(years);
-            return years;
         }
-        return null;
     }
 
     public void request() {
@@ -132,7 +126,7 @@ class YearsRequest extends RequestTask <String[]>{
     }
 }
 
-class MakesRequest extends RequestTask <String[]>{
+class MakesRequest extends RequestTask {
 
     private String year;
 
@@ -142,7 +136,7 @@ class MakesRequest extends RequestTask <String[]>{
     }
 
     @Override
-    public String[] handler(JSONObject makesObj) throws JSONException {
+    public void handler(JSONObject makesObj) throws JSONException {
         if (makesObj.get("menuItems").getClass()==JSONObject.class) {
             JSONArray jaMakes = makesObj.getJSONObject("menuItems").getJSONArray("menuItem");
             String[] makes = new String[jaMakes.length()];
@@ -150,9 +144,7 @@ class MakesRequest extends RequestTask <String[]>{
                 makes[i] = jaMakes.getJSONObject(i).getString("value");
             Dropdown d = new Dropdown(mActivity, mActivity.findViewById(R.id.makesSpinner));
             d.updateOptions(makes);
-            return makes;
         }
-        return null;
     }
 
 
@@ -161,7 +153,7 @@ class MakesRequest extends RequestTask <String[]>{
     }
 }
 
-class ModelsRequest extends RequestTask<String[]> {
+class ModelsRequest extends RequestTask {
 
     private String year, make;
 
@@ -172,7 +164,7 @@ class ModelsRequest extends RequestTask<String[]> {
     }
 
     @Override
-    public String[] handler(JSONObject modelsObj) throws JSONException {
+    public void handler(JSONObject modelsObj) throws JSONException {
         if (modelsObj.get("menuItems").getClass()==JSONObject.class) {
             JSONArray modelArray = modelsObj.getJSONObject("menuItems").getJSONArray("menuItem");
             String[] models = new String[modelArray.length()];
@@ -180,9 +172,7 @@ class ModelsRequest extends RequestTask<String[]> {
                 models[i] = modelArray.getJSONObject(i).getString("value");
             Dropdown d = new Dropdown(mActivity, mActivity.findViewById(R.id.modelsSpinner));
             d.updateOptions(models);
-            return models;
         }
-        return null;
     }
 
     public void request() {
@@ -190,7 +180,7 @@ class ModelsRequest extends RequestTask<String[]> {
     }
 }
 
-class OptionsRequest extends RequestTask<Map<String,String>>{
+class OptionsRequest extends RequestTask {
 
     private String year, make, model;
 
@@ -202,11 +192,10 @@ class OptionsRequest extends RequestTask<Map<String,String>>{
     }
 
     @Override
-    public Map<String, String> handler(JSONObject optionsObj) throws JSONException {
+    public void handler(JSONObject optionsObj) throws JSONException {
         Map<String, String> options = getMap(optionsObj);
         Dropdown d = new Dropdown(mActivity, mActivity.findViewById(R.id.optionsSpinner));
         d.updateOptions(options.keySet().toArray(new String[options.size()]));
-        return options;
     }
 
     public void request() {
@@ -245,17 +234,15 @@ class IDRequest extends OptionsRequest {
     }
 
     @Override
-    public Map<String, String> handler(JSONObject obj) throws JSONException {
+    public void handler(JSONObject obj) throws JSONException {
         Map<String, String> options = getMap(obj);
         String id = options.get(option);
 
         new MPGRequest(mActivity, id).request();
-
-        return options;
     }
 }
 
-class MPGRequest extends RequestTask<String> {
+class MPGRequest extends RequestTask {
 
     private String id;
 
@@ -264,13 +251,12 @@ class MPGRequest extends RequestTask<String> {
         this.id = id;
     }
 
-    public String handler(JSONObject obj) throws JSONException {
+    public void handler(JSONObject obj) throws JSONException {
         obj = obj.getJSONObject("vehicle");
         String combinedMPG = Double.toString(obj.getDouble("comb08"));
         TextView tv = (TextView) mActivity.findViewById(R.id.textView);
 
         tv.setText("Average "+combinedMPG+" MPG");
-        return combinedMPG;
     }
 
     public void request() {
