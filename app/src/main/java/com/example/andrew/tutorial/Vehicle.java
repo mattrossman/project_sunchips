@@ -43,6 +43,12 @@ public class Vehicle {
 
     public void setOption(String option) { this.option = option; }
 
+    public String getMake() { return make; }
+
+    public String getModel() { return model; }
+
+    public int getYear() { return year; }
+
     public String toString(){
         return Integer.toString(year) + " " + make + " " + model + " " + option;
     }
