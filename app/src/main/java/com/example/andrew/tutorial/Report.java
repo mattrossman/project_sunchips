@@ -46,7 +46,22 @@ public class Report {
     }
 
     public double getAvgCost(){
-        return (double)(cost/trips.size());
+        int count = 0;
+        double cost = 0;
+        for (Report report : reports) {
+            if(report != null){
+                count++;
+                cost += report.getAvgCost();
+            }
+        }
+        for(Trip trip : trips){
+           if(trip != null) {
+               count++;
+               cost += trip.getCost();
+           }
+        }
+
+        return (double)(cost/count);
     }
 
     public void calculateTotalCost(){
