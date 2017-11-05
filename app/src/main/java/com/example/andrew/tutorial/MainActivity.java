@@ -10,6 +10,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.preference.PreferenceManager;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -62,10 +63,10 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
         super.onResume();
         if(myCar != null) {
             TextView carName = (TextView) findViewById(R.id.currentCarName);
-            carName.setText(myCar.toString());
+            carName.setText(myCar.title());
             TextView carMileage = (TextView) findViewById(R.id.currentCarMileage);
             System.out.println(myCar.getMileage());
-            carMileage.setText(Double.toString(myCar.getMileage()));
+            carMileage.setText(Double.toString(myCar.getMileage())+" MPG");
         }
         else {
             TextView carName = (TextView) findViewById(R.id.currentCarName);
@@ -180,8 +181,9 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
             activeTrip.addDistance();
             TextView activeTripReport = (TextView) findViewById(R.id.activeTripReport);
             activeTripReport.setText(Double.toString(activeTrip.getDistance()) + " miles, $" + Double.toString(activeTrip.getCost()));
-            Button startStop = (Button) findViewById(R.id.startStopButton);
-            startStop.setText("Stop Trip");
+            FloatingActionButton startStop = (FloatingActionButton) findViewById(R.id.startStopButton);
+            TextView tripLabel = (TextView) findViewById(R.id.tripLabel);
+            tripLabel.setText("Stop Trip");
             startStop.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -210,8 +212,9 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
     public void stopTrip(View view){
         //stops trip
         isOnTrip = false;
-        Button startStop = (Button) findViewById(R.id.startStopButton);
-        startStop.setText("Start Trip");
+        FloatingActionButton startStop = (FloatingActionButton) findViewById(R.id.startStopButton);
+        TextView tripLabel = (TextView) findViewById(R.id.tripLabel);
+        tripLabel.setText("Start Trip");
         startStop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

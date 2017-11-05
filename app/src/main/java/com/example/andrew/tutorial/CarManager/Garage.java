@@ -40,6 +40,8 @@ public class Garage {
         String json = appSharedPrefs.getString("MyGarage", "");
         Type type = new TypeToken<List<Vehicle>>(){}.getType();
         List<Vehicle> cars = gson.fromJson(json, type);
+        if (cars==null)
+            cars = new ArrayList<Vehicle>();
         return cars;
     }
 

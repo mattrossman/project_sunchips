@@ -7,6 +7,7 @@
     tools:context="com.example.andrew.tutorial.MainActivity">
 
     <TextView
+        android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -16,86 +17,166 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.032" />
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="174dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="60dp"
-        android:onClick="displayCar"
-        android:text="@string/display_car_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/guideline3"
-        app:layout_constraintTop_toBottomOf="@+id/currentCarMileage" />
-
-    <Button
-        android:id="@+id/startStopButton"
-        android:layout_width="131dp"
-        android:layout_height="63dp"
-        android:layout_marginTop="11dp"
-        android:onClick="startTrip"
-        android:text="@string/start_trip_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/guideline3"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
-
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="displayReportOverview"
-        android:text="@string/display_report_button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.932"
-        app:layout_constraintStart_toEndOf="@+id/guideline3" />
-
     <TextView
         android:id="@+id/currentCarName"
         style="@style/Header1"
-        android:layout_width="139dp"
-        android:layout_height="53dp"
-        android:layout_marginTop="116dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/guideline3"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="52dp"
+        android:textAppearance="@android:style/TextAppearance.Material.Display3"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/currentCarMileage"
         style="@style/Header2"
-        android:layout_width="94dp"
-        android:layout_height="36dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="52dp"
+        android:textAlignment="textEnd"
+        android:textAppearance="@android:style/TextAppearance.Material.Display4"
+        android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/guideline3"
-        app:layout_constraintTop_toBottomOf="@+id/currentCarName" />
+        app:layout_constraintHorizontal_bias="0.568"
+        app:layout_constraintStart_toEndOf="@+id/currentCarName"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/activeTripReport"
         style="@style/Header2"
-        android:layout_width="110dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="11dp"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:textAlignment="center"
+        android:textAppearance="@android:style/TextAppearance.Material.Title"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/guideline3"
-        app:layout_constraintTop_toBottomOf="@+id/startStopButton" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="20dp" />
+        app:layout_constraintGuide_percent="0.0" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:clickable="true"
+        android:onClick="displayCar"
+        android:tint="@color/common_google_signin_btn_text_dark_pressed"
+        app:backgroundTint="@android:color/holo_blue_bright"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toBottomOf="@+id/startStopButton"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toTopOf="@+id/startStopButton"
+        app:srcCompat="@drawable/ic_directions_car_black_24dp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Garage"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="@+id/floatingActionButton"
+        app:layout_constraintStart_toStartOf="@+id/floatingActionButton"
+        app:layout_constraintTop_toBottomOf="@+id/floatingActionButton" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/startStopButton"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="32dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:clickable="true"
+        android:onClick="startTrip"
+        android:tint="@color/common_google_signin_btn_text_dark_default"
+        app:backgroundTint="@color/colorAccent"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/floatingActionButton4"
+        app:layout_constraintStart_toEndOf="@+id/floatingActionButton"
+        app:srcCompat="@drawable/ic_navigation_black_24dp" />
+
+    <TextView
+        android:id="@+id/tripLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Start"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="@+id/startStopButton"
+        app:layout_constraintStart_toStartOf="@+id/startStopButton"
+        app:layout_constraintTop_toBottomOf="@+id/startStopButton" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floatingActionButton4"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="8dp"
+        android:clickable="true"
+        android:onClick="displayReportOverview"
+        android:tint="@color/common_google_signin_btn_text_dark_default"
+        app:backgroundTint="@android:color/holo_orange_light"
+        app:layout_constraintBottom_toBottomOf="@+id/startStopButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/startStopButton"
+        app:srcCompat="@drawable/ic_insert_chart_black_24dp" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Records"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="@+id/floatingActionButton4"
+        app:layout_constraintStart_toStartOf="@+id/floatingActionButton4"
+        app:layout_constraintTop_toBottomOf="@+id/floatingActionButton4" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="My Car"
+        android:textAppearance="@android:style/TextAppearance.Material.Title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/savings"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="30dp"
-        tools:layout_editor_absoluteY="25dp" />
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:textAlignment="center"
+        android:textAppearance="@android:style/TextAppearance.Material.Title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activeTripReport" />
 
 </android.support.constraint.ConstraintLayout>
