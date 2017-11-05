@@ -1,9 +1,9 @@
 package com.example.andrew.tutorial;
 
 import android.location.Location;
+import android.location.LocationManager;
 
-<<<<<<< HEAD
-=======
+
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.sql.Time;
 import java.text.DateFormat;
 import java.time.LocalDateTime;
->>>>>>> master
+
 import java.util.Calendar;
 
 /**
