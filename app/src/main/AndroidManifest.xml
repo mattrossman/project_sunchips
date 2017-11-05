@@ -69,7 +69,7 @@
                 android:value=".MainActivity" />
         </activity>
         <activity android:name=".DisplayMonthlyReportOverviewActivity" />
-        <activity android:name=".CarManager.AddCar"></activity>
+        <activity android:name=".CarManager.AddCarActivity"></activity>
     </application>
 
 </manifest>

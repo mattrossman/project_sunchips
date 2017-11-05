@@ -9,7 +9,7 @@ import android.widget.Spinner;
 
 import com.example.andrew.tutorial.R;
 
-public class AddCar extends AppCompatActivity {
+public class AddCarActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +25,7 @@ public class AddCar extends AppCompatActivity {
     }
 
     public void submitCar(View view){
-
+        
     }
 
 
