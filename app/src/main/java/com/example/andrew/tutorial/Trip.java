@@ -34,7 +34,7 @@ public class Trip {
 
     private static final String provider = LocationManager.GPS_PROVIDER;
     public static float gasPrice = (float)3.00; // just a default, will be overwritten by up to date avg
-    public static double electricRate = 0.33; // dollars per mile
+    public static double electricRate = 0.033; // dollars per mile
 
 
     public Trip(Vehicle vehicle){
@@ -43,11 +43,17 @@ public class Trip {
         locStart = new Location(provider);
         locFinish = new Location(provider);
         time = DateFormat.getInstance();
-        date = getDate();
+        date = new java.util.Date().toString();
     }
 
     public String toString(){
-        return date + ", Cost: " + getCost();
+        return date + ", Cost: $" + getCost()+ ", Savings: $" + compareElectric();
+    }
+
+    public double compareElectric(){
+        System.out.println("G: "+ getCost());
+        System.out.println("E: "+ getElectricCost());
+        return (double)Math.round((getCost()-getElectricCost())*100)/100;
     }
 
     public boolean hasBegun(){
@@ -80,7 +86,7 @@ public class Trip {
     }
 
     public double getElectricCost() {
-        return distance*electricRate;
+        return (double)Math.round(distance*electricRate*100)/100;
     }
 
     public void addDistance(){

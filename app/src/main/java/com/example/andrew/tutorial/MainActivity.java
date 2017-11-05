@@ -6,7 +6,6 @@ import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.database.sqlite.SQLiteDatabase;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -136,6 +135,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
                 activeTrip.addDistance();
                 TextView activeTripReport = (TextView) findViewById(R.id.activeTripReport);
                 activeTripReport.setText(Double.toString(activeTrip.getDistance()) + " miles, $" + Double.toString(activeTrip.getCost()));
+                TextView savingsReport = (TextView) findViewById(R.id.savings);
+                savingsReport.setText("An electric car would save $" + Double.toString(activeTrip.compareElectric()));
             }
             else{
                 activeTrip.setStart(location);

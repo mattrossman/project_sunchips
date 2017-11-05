@@ -34,7 +34,7 @@ public class Report {
     }
 
     public String toString(){
-        return (date + ", Average Cost: " + getAvgCost());
+        return (date + ", Average Cost: $" + getAvgCost() + ", Average Savings: $" + getAvgSavings());
     }
 
     public void setDate(String date){
@@ -58,7 +58,23 @@ public class Report {
             count++;
             cost += trip.getCost();
         }
-        return (double)(cost/count);
+        return (double)Math.round((cost/count)*100)/100;
+    }
+
+    public double getAvgSavings(){
+        int count = 0;
+        double cost = 0.00;
+        for(Report report : reports){
+            if(report != null){
+                count++;
+                cost += report.getAvgSavings();
+            }
+        }
+        for(Trip trip : trips){
+            count++;
+            cost += trip.compareElectric();
+        }
+        return (double)Math.round((cost/count)*100)/100;
     }
 
     public void calculateTotalCost(){
