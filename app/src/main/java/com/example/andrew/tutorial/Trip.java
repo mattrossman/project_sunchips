@@ -15,6 +15,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.IOException;
 import java.sql.Time;
+import java.text.DateFormat;
 import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.List;
@@ -29,10 +30,11 @@ import static android.content.Context.LOCATION_SERVICE;
 public class Trip {
     private Vehicle vehicle; //the active vehicle used for this trip
     private double distance; //the distance traveled in this trip
-    private Calendar time;
+    private DateFormat time;
     private Location locStart;
     private Location locFinish;
     private boolean hasBegun;
+    String date;
 
     private static final String provider = LocationManager.GPS_PROVIDER;
     private static float gasPrice = (float)3.00;
@@ -43,7 +45,12 @@ public class Trip {
         distance = 0;
         locStart = new Location(provider);
         locFinish = new Location(provider);
-        //time = Calendar.getInstance();
+        time = DateFormat.getInstance();
+        date = getDate();
+    }
+
+    public String toString(){
+        return date + ", Cost: " + getCost();
     }
 
     public boolean hasBegun(){
@@ -58,16 +65,16 @@ public class Trip {
         hasBegun = false;
     }
 
-    public int getYear(){
-        return 0;
-    }
-
     public int getMonth(){
-        return 0;
+        return time.getCalendar().get(Calendar.MONTH);
     }
 
     public int getDay(){
-        return 0;
+        return time.getCalendar().get(Calendar.DAY_OF_MONTH);
+    }
+
+    public String getDate(){
+        return time.getCalendar().toString();
     }
 
     public double getCost(){
