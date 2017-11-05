@@ -19,18 +19,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-<<<<<<< HEAD
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.List;
-=======
 import com.example.andrew.tutorial.CarManager.RequestTask;
 
 import org.json.JSONException;
 import org.json.JSONObject;
->>>>>>> development
 
 
 public class MainActivity extends AppCompatActivity implements LocationListener{

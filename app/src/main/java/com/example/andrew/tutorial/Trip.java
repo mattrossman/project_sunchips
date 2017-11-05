@@ -5,8 +5,6 @@ import android.location.Location;
 import android.location.LocationManager;
 
 
-<<<<<<< HEAD
-=======
 import com.example.andrew.tutorial.CarManager.RequestTask;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.model.LatLng;
@@ -17,7 +15,6 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.sql.Time;
->>>>>>> development
 import java.text.DateFormat;
 
 import java.util.Calendar;
