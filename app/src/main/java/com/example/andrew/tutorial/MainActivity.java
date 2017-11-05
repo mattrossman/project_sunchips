@@ -28,18 +28,27 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
         Manifest.permission.ACCESS_FINE_LOCATION }, 1);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        overallReport = new Report();
+        if(overallReport == null) {
+            overallReport = new Report();
+        }
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         if(myCar != null) {
             TextView carName = (TextView) findViewById(R.id.currentCarName);
             carName.setText(myCar.toString());
             TextView carMileage = (TextView) findViewById(R.id.currentCarMileage);
+            System.out.println(myCar.getMileage());
             carMileage.setText(Double.toString(myCar.getMileage()));
         }
         else {
             TextView carName = (TextView) findViewById(R.id.currentCarName);
             carName.setText("No car selected");
         }
-        }
+    }
 
     public void onProviderEnabled(String provider){
 

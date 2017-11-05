@@ -59,14 +59,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-<<<<<<< HEAD
-        <activity android:name=".DisplayMonthlyReportOverviewActivity"
-            android:parentActivityName=".DisplayReportOverviewActivity">
-
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity"/>
-=======
         <activity android:name=".DisplayMonthlyReportOverviewActivity" />
 
         <activity
@@ -77,7 +69,6 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".DisplayCarActivity" />
->>>>>>> 5784fa05367f37d738ab3654fdb271db5bb56bed
         </activity>
     </application>
 

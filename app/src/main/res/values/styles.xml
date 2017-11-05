@@ -7,18 +7,10 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
-    <style name="CustomFontStyle">
-        <item name="android:layout_width">fill_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:capitalize">characters</item>
-        <item name="android:textSize">10pt</item>
+    <style name="Header1">
+        <item name="android:textSize">20sp</item>
     </style>
-    <style name="ActiveTripReport">
-        <item name="android:layout_width">fill_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:capitalize">characters</item>
-        <item name="android:typeface">monospace</item>
-        <item name="android:textSize">7pt</item>
+    <style name="Header2">
+        <item name="android:textSize">16sp</item>
     </style>
-
 </resources>

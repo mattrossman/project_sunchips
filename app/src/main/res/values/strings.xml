@@ -8,4 +8,6 @@
     <string name="make_form_help_text"> Make </string>
     <string name="model_form_help_text"> Model </string>
     <string name="mileage_form_help_text"> Mileage </string>
+    <string name="display_car_title">Garage</string>
+    <string name="add_car_title">Add a car</string>
 </resources>
