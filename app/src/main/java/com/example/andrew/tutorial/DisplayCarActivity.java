@@ -4,33 +4,24 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-<<<<<<< HEAD
-=======
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.preference.PreferenceManager;
->>>>>>> development
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-<<<<<<< HEAD
-=======
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
->>>>>>> development
 
 import com.example.andrew.tutorial.CarManager.AddCarActivity;
 import com.example.andrew.tutorial.CarManager.Garage;
 import com.google.gson.Gson;
 
-<<<<<<< HEAD
-=======
 import java.util.ArrayList;
 import java.util.HashMap;
->>>>>>> development
 import java.util.List;
 import java.util.Map;
 
