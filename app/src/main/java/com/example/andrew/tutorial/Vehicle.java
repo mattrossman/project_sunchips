@@ -52,4 +52,7 @@ public class Vehicle {
     public String toString(){
         return Integer.toString(year) + " " + make + " " + model + " " + option;
     }
+
+    public String title() { return make+" "+model; }
+    public String subtitle() { return Integer.toString(year)+", "+option; }
 }

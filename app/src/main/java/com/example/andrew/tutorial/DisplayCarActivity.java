@@ -41,7 +41,8 @@ public class DisplayCarActivity extends AppCompatActivity {
         lvGarage.setOnItemClickListener(new AdapterView.OnItemClickListener(){
 
             public void onItemClick(AdapterView<?> adapter, View v, int position, long l){
-                Vehicle car = (Vehicle) adapter.getItemAtPosition(position);
+                List<Vehicle> vehicles = new Garage(DisplayCarActivity.this).loadVehicles();
+                Vehicle car = vehicles.get(position);
                 System.out.println(car);
 
                 fireAlert(car, position);
@@ -54,8 +55,8 @@ public class DisplayCarActivity extends AppCompatActivity {
         final Activity mActivity = this;
 
         AlertDialog alertDialog = new AlertDialog.Builder(this).create();
-        alertDialog.setTitle("Selected:");
-        alertDialog.setMessage(v.toString());
+        alertDialog.setTitle(v.title());
+        alertDialog.setMessage(v.subtitle());
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Activate",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
@@ -106,11 +107,9 @@ public class DisplayCarActivity extends AppCompatActivity {
 
         for (Vehicle v : vehicles) {
             Map<String, String> datum = new HashMap<String, String>(2);
-            String title = v.getMake()+" "+v.getModel();
-            String sub = Integer.toString(v.getYear())+", "+v.getOption();
 
-            datum.put("title", title);
-            datum.put("sub", sub);
+            datum.put("title", v.title());
+            datum.put("sub", v.subtitle());
             data.add(datum);
         }
 
