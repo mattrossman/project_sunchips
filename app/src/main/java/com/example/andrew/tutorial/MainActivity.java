@@ -10,6 +10,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -24,7 +25,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
     public static LocationManager locationManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        System.out.println("Has to run");
         ActivityCompat.requestPermissions(this, new String[]{
         Manifest.permission.ACCESS_FINE_LOCATION }, 1);
         super.onCreate(savedInstanceState);
@@ -59,10 +59,19 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
     public void onLocationChanged(Location location){
         System.out.println("Location changed");
         if(isOnTrip) {
-            activeTrip.setFinish();
-            activeTrip.addDistance();
-            TextView activeTripReport = (TextView) findViewById(R.id.activeTripReport);
-            activeTripReport.setText(Double.toString(activeTrip.getDistance())+ " meters, $" + Double.toString(activeTrip.getCost()) );
+            if (activeTrip.hasBegun()) {
+                activeTrip.setStart(activeTrip.getFinish());
+                activeTrip.setFinish(location);
+                activeTrip.addDistance();
+                System.out.println(activeTrip.getDistance());
+                TextView activeTripReport = (TextView) findViewById(R.id.activeTripReport);
+                activeTripReport.setText(Double.toString(activeTrip.getDistance()) + " miles, $" + Double.toString(activeTrip.getCost()));
+            }
+            else{
+                activeTrip.setStart(location);
+                activeTrip.setFinish(location);
+                activeTrip.begin();
+            }
         }
     }
 
@@ -85,19 +94,42 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
             alertDialog2.show();
             return;
         }
-        isOnTrip = true;
-        activeTrip = new Trip(myCar);
-        Button startStop = (Button) findViewById(R.id.startStopButton);
-        startStop.setText("Stop Trip");
-        startStop.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                stopTrip(view);
+        if(myCar != null) {
+            isOnTrip = true;
+            activeTrip = new Trip(myCar);
+            activeTrip.addDistance();
+            System.out.println(activeTrip.getDistance());
+            TextView activeTripReport = (TextView) findViewById(R.id.activeTripReport);
+            activeTripReport.setText(Double.toString(activeTrip.getDistance()) + " miles, $" + Double.toString(activeTrip.getCost()));
+            Button startStop = (Button) findViewById(R.id.startStopButton);
+            startStop.setText("Stop Trip");
+            startStop.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    stopTrip(view);
+                }
+            });
+            System.out.println("location manager running");
+            locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+            try {
+                System.out.println("Request Location Updates");
+                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 1, this);
+                //locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 1, this);
+            } catch (Exception e) {
+                System.err.println("Location manager unable to request location updates");
             }
-        });
-        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-        locationManager.requestLocationUpdates(locationManager.GPS_PROVIDER, 3000, 0, this);
+        }
+        else{
+            AlertDialog.Builder alertDialog2 = new AlertDialog.Builder(
+                    this);
 
+// Setting Dialog Title
+            alertDialog2.setTitle("Need a vehicle");
+
+// Setting Dialog Message
+            alertDialog2.setMessage("Please select your vehicle");
+            alertDialog2.show();
+        }
     }
     public void stopTrip(View view){
         //stops trip
@@ -114,6 +146,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
                 }
             }
         });
+        activeTrip.end();
 
     }
 
