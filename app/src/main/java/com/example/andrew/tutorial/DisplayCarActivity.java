@@ -56,6 +56,9 @@ public class DisplayCarActivity extends AppCompatActivity {
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         System.out.println("Confirmed " + v.toString());
+                        MainActivity.myCar = v;
+                        System.out.println(v.getMileage());
+                        finish();
                         dialog.dismiss();
                     }
                 });

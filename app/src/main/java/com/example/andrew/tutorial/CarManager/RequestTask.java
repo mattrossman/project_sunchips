@@ -257,10 +257,13 @@ class MPGRequest extends RequestTask {
         obj = obj.getJSONObject("vehicle");
         double mpg = obj.getDouble("comb08");
         Vehicle toAdd = new Vehicle();
+
         toAdd.setYear(Integer.parseInt(AddCarActivity.year));
         toAdd.setMake(AddCarActivity.make);
         toAdd.setModel(AddCarActivity.model);
         toAdd.setOption(AddCarActivity.option);
+        toAdd.setMileage(mpg);
+
         new Garage(mActivity).add(toAdd);
         mActivity.finish();
     }
