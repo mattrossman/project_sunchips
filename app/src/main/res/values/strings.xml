@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Eco-nomics</string>
-    <string name="display_car_button"> My Car </string>
+    <string name="display_car_button"> My Cars </string>
     <string name="start_trip_button"> Start Trip </string>
     <string name="stop_trip_button"> Stop Trip </string>
     <string name="display_report_button"> My Report </string>
