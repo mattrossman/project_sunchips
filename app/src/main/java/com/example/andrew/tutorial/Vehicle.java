@@ -7,6 +7,7 @@ package com.example.andrew.tutorial;
 public class Vehicle {
     private String make; //make of the car
     private String model; //model of the car
+    private String option; //specific configuration of the car
     private double mileage; //miles per gallon
     private int year;
 
@@ -15,6 +16,7 @@ public class Vehicle {
         model = "";
         mileage = 0.0;
         year = 0;
+        option = "";
     }
 
     public void setMake(String make){
@@ -37,8 +39,11 @@ public class Vehicle {
         return mileage;
     }
 
+    public String getOption() { return option; }
+
+    public void setOption(String option) { this.option = option; }
 
     public String toString(){
-        return make + " " + model + " " + year;
+        return Integer.toString(year) + " " + make + " " + model + " " + option;
     }
 }

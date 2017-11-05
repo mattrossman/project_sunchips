@@ -1,13 +1,8 @@
 package com.example.andrew.tutorial;
 
-import android.Manifest;
-import android.content.pm.PackageManager;
-import android.location.Address;
-import android.location.Geocoder;
 import android.location.Location;
-import android.location.LocationListener;
 import android.location.LocationManager;
-import android.support.v4.app.ActivityCompat;
+
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.model.LatLng;
@@ -17,11 +12,8 @@ import java.io.IOException;
 import java.sql.Time;
 import java.text.DateFormat;
 import java.time.LocalDateTime;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Timer;
 
-import static android.content.Context.LOCATION_SERVICE;
+import java.util.Calendar;
 
 /**
  * Created by Andrew on 11/4/2017.

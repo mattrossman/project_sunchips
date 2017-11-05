@@ -6,23 +6,29 @@
     android:layout_height="match_parent"
     tools:context="com.example.andrew.tutorial.DisplayCarActivity">
 
-    <TextView
-        android:id="@+id/textView"
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/addCarButton"
         android:layout_width="wrap_content"
-        android:layout_height="57dp"
-        android:text="Car Selection Page"
-        app:layout_constraintBottom_toTopOf="@+id/button5"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="addCar"
+        android:tint="@color/common_google_signin_btn_text_dark_default"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.007"
+        app:srcCompat="@android:drawable/ic_input_add"
+        tools:onClick="addCar" />
+
+    <ListView
+        android:id="@+id/garageList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="wrap_content"
-        android:layout_height="41dp"
-        android:onClick="addCar"
-        android:text="@string/add_new_car_button"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="244dp" />
 </android.support.constraint.ConstraintLayout>
