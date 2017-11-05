@@ -1,6 +1,9 @@
 package com.example.andrew.tutorial.CarManager;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -9,13 +12,17 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.andrew.tutorial.DisplayCarActivity;
 import com.example.andrew.tutorial.R;
+import com.example.andrew.tutorial.Vehicle;
+import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.XML;
 
+import java.io.FileOutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -253,10 +260,15 @@ class MPGRequest extends RequestTask {
 
     public void handler(JSONObject obj) throws JSONException {
         obj = obj.getJSONObject("vehicle");
-        String combinedMPG = Double.toString(obj.getDouble("comb08"));
-        TextView tv = (TextView) mActivity.findViewById(R.id.textView);
+        double mpg = obj.getDouble("comb08");
+        Vehicle toAdd = new Vehicle();
+        toAdd.setYear(Integer.parseInt(AddCarActivity.year));
+        toAdd.setMake(AddCarActivity.make);
+        toAdd.setModel(AddCarActivity.model);
+        toAdd.setOption(AddCarActivity.option);
 
-        tv.setText("Average "+combinedMPG+" MPG");
+        new Garage(mActivity).saveVehicle(toAdd);
+        System.out.println("The MPG is "+Double.toString(mpg));
     }
 
     public void request() {

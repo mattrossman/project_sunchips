@@ -11,10 +11,21 @@ import com.example.andrew.tutorial.R;
 
 public class AddCarActivity extends AppCompatActivity {
 
+    public static String year, make, model, option;
+    private static Spinner years, makes, models, options;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_car);
+
+        // Save static references to the spinner dropdowns
+        years = (Spinner) findViewById(R.id.yearsSpinner);
+        makes = (Spinner) findViewById(R.id.makesSpinner);
+        models = (Spinner) findViewById(R.id.modelsSpinner);
+        options = (Spinner) findViewById(R.id.optionsSpinner);
+
+        // Trigger population of the year dropdown
         new YearsRequest(this).request();
     }
 
@@ -25,24 +36,17 @@ public class AddCarActivity extends AppCompatActivity {
     }
 
     public void submitCar(View view){
-        
+        new IDRequest(this,year, make, model, option).request();
     }
 
 
     private void spinnerListeners(final Activity mActivity) {
-        final Spinner years = (Spinner) findViewById(R.id.yearsSpinner);
-        final Spinner makes = (Spinner) findViewById(R.id.makesSpinner);
-        final Spinner models = (Spinner) findViewById(R.id.modelsSpinner);
-        final Spinner options = (Spinner) findViewById(R.id.optionsSpinner);
 
         years.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                //year = years.getSelectedItem().toString();
-                new MakesRequest(mActivity,
-                        years.getSelectedItem().toString()
-                ).request();
-                System.out.println("Requesting makes from "+years.getSelectedItem().toString());
+                year = years.getSelectedItem().toString();
+                new MakesRequest(mActivity, year).request();
             }
 
             @Override
@@ -51,10 +55,8 @@ public class AddCarActivity extends AppCompatActivity {
         makes.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                new ModelsRequest(mActivity,
-                        years.getSelectedItem().toString(),
-                        makes.getSelectedItem().toString()
-                ).request();
+                make = makes.getSelectedItem().toString();
+                new ModelsRequest(mActivity, year, make).request();
             }
 
             @Override
@@ -63,13 +65,8 @@ public class AddCarActivity extends AppCompatActivity {
         models.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                OptionsRequest req = new OptionsRequest(mActivity,
-                        years.getSelectedItem().toString(),
-                        makes.getSelectedItem().toString(),
-                        models.getSelectedItem().toString()
-                );
-
-                req.request();
+                model = models.getSelectedItem().toString();
+                new OptionsRequest(mActivity, year, make, model).request();
             }
 
             @Override
@@ -78,8 +75,7 @@ public class AddCarActivity extends AppCompatActivity {
         options.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-
-                System.out.println(id);
+                option = options.getSelectedItem().toString();
             }
 
             @Override
