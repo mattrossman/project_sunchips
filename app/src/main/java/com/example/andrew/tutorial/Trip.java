@@ -2,6 +2,17 @@ package com.example.andrew.tutorial;
 
 import android.location.Location;
 
+<<<<<<< HEAD
+=======
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.io.IOException;
+import java.sql.Time;
+import java.text.DateFormat;
+import java.time.LocalDateTime;
+>>>>>>> master
 import java.util.Calendar;
 
 /**
@@ -11,50 +22,74 @@ import java.util.Calendar;
 public class Trip {
     private Vehicle vehicle; //the active vehicle used for this trip
     private double distance; //the distance traveled in this trip
-    private Calendar time;
+    private DateFormat time;
     private Location locStart;
     private Location locFinish;
+    private boolean hasBegun;
+    String date;
 
-    private static final String provider = MainActivity.locationManager.GPS_PROVIDER;
-    private static double gasPrice = 3.00;
+    private static final String provider = LocationManager.GPS_PROVIDER;
+    private static float gasPrice = (float)3.00;
 
 
     public Trip(Vehicle vehicle){
         this.vehicle = vehicle;
         distance = 0;
         locStart = new Location(provider);
-        //time = Calendar.getInstance();
+        locFinish = new Location(provider);
+        time = DateFormat.getInstance();
+        date = getDate();
     }
 
-    public int getYear(){
-        return 0;
+    public String toString(){
+        return date + ", Cost: " + getCost();
+    }
+
+    public boolean hasBegun(){
+        return hasBegun;
+    }
+
+    public void begin(){
+        hasBegun = true;
+    }
+
+    public void end(){
+        hasBegun = false;
     }
 
     public int getMonth(){
-        return 0;
+        return time.getCalendar().get(Calendar.MONTH);
     }
 
     public int getDay(){
-        return 0;
+        return time.getCalendar().get(Calendar.DAY_OF_MONTH);
+    }
+
+    public String getDate(){
+        return time.getCalendar().toString();
     }
 
     public double getCost(){
-        return (double)(distance/vehicle.getMileage()*gasPrice);
+        double cost = (double)(distance/vehicle.getMileage()*gasPrice);
+        return (double)Math.round(cost*100)/100;
     }
 
     public void addDistance(){
-        distance += locStart.distanceTo(locFinish);
-        setStart();
+        distance += (double) locStart.distanceTo(locFinish) * 0.000621371;
     }
-    public void setStart(){
-        locStart = new Location(provider);
+    public void setStart(Location location){
+        locStart = location;
     }
-    public void setFinish(){
-        locFinish = new Location(provider);
+    public void setFinish(Location location){
+        locFinish = location;
+    }
+
+    public Location getFinish(){
+        return locFinish;
     }
 
     public double getDistance(){
-        return distance;
+        return (double)Math.round(distance*100)/100;
     }
 
     double distanceBetweenTwoPoint(double srcLat, double srcLng, double desLat, double desLng) {
