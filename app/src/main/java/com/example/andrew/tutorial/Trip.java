@@ -39,7 +39,7 @@ public class Trip {
     }
 
     public double getCost(){
-        return (double)(distance/vehicle.getMpg()*gasPrice);
+        return (double)(distance/vehicle.getMileage()*gasPrice);
     }
 
     public void addDistance(){

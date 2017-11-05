@@ -7,9 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /*
 If the database doesn't have the user's make/model, this form displays, allowing the user
 to add the make/model of their vehicle with mileage. This will save locally to their app.
@@ -31,7 +28,7 @@ public class DisplayCarFormActivity extends AppCompatActivity {
             car.setMake(((EditText) findViewById(R.id.make_input)).getText().toString());
             car.setModel(((EditText) findViewById(R.id.model_input)).getText().toString());
             car.setYear(Integer.parseInt(((EditText) findViewById(R.id.year_input)).getText().toString()));
-            car.setMpg(Double.parseDouble(((EditText) findViewById(R.id.mileage_input)).getText().toString()));
+            car.setMileage(Double.parseDouble(((EditText) findViewById(R.id.mileage_input)).getText().toString()));
             MainActivity.myCar = car;
 
             Intent intent = new Intent(this, MainActivity.class);

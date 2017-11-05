@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
             TextView carName = (TextView) findViewById(R.id.currentCarName);
             carName.setText(myCar.toString());
             TextView carMileage = (TextView) findViewById(R.id.currentCarMileage);
-            carMileage.setText(Double.toString(myCar.getMpg()));
+            carMileage.setText(Double.toString(myCar.getMileage()));
         }
         else {
             TextView carName = (TextView) findViewById(R.id.currentCarName);

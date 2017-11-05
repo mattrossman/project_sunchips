@@ -1,7 +1,5 @@
 package com.example.andrew.tutorial;
 
-import java.io.DataOutputStream;
-
 /**
  * Created by Andrew on 11/4/2017.
  */
@@ -10,13 +8,13 @@ public class Vehicle {
     private String make; //make of the car
     private String model; //model of the car
     private String option; //specific configuration of the car
-    private double mpg; //miles per gallon
+    private double mileage; //miles per gallon
     private int year;
 
     public Vehicle(){
         make = "";
         model = "";
-        mpg = 0.0;
+        mileage = 0.0;
         year = 0;
         option = "";
     }
@@ -29,16 +27,16 @@ public class Vehicle {
         this.model = model;
     }
 
-    public void setMpg(double mpg){
-        this.mpg = mpg;
+    public void setMileage(double mileage){
+        this.mileage = mileage;
     }
 
     public void setYear(int year){
         this.year = year;
     }
 
-    public double getMpg(){
-        return mpg;
+    public double getMileage(){
+        return mileage;
     }
 
     public String getOption() { return option; }
