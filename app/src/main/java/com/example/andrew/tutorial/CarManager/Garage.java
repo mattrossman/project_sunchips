@@ -48,6 +48,7 @@ public class Garage {
         if (cars==null)
             cars = new ArrayList<Vehicle>();
         cars.add(v);
+        saveVehicles(cars);
     }
 
     public void remove(int index) {

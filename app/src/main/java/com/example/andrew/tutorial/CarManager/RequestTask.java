@@ -1,6 +1,7 @@
 package com.example.andrew.tutorial.CarManager;
 
 import android.app.Activity;
+import android.content.Intent;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -8,6 +9,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.andrew.tutorial.DisplayCarActivity;
 import com.example.andrew.tutorial.R;
 import com.example.andrew.tutorial.Vehicle;
 
@@ -259,9 +261,8 @@ class MPGRequest extends RequestTask {
         toAdd.setMake(AddCarActivity.make);
         toAdd.setModel(AddCarActivity.model);
         toAdd.setOption(AddCarActivity.option);
-
         new Garage(mActivity).add(toAdd);
-        System.out.println("The MPG is "+Double.toString(mpg));
+        mActivity.finish();
     }
 
     public void request() {

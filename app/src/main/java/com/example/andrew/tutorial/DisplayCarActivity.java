@@ -1,13 +1,18 @@
 package com.example.andrew.tutorial;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.andrew.tutorial.CarManager.AddCarActivity;
 import com.example.andrew.tutorial.CarManager.Garage;
@@ -28,7 +33,41 @@ public class DisplayCarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_car);
 
+        ListView lvGarage = (ListView) findViewById(R.id.garageList);
+        lvGarage.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+
+            public void onItemClick(AdapterView<?> adapter, View v, int position, long l){
+                Vehicle car = (Vehicle) adapter.getItemAtPosition(position);
+                System.out.println(car);
+
+                fireAlert(car, position);
+            }
+        });
         loadGarage();
+    }
+
+    private void fireAlert(final Vehicle v, final int i) {
+        final Activity mActivity = this;
+
+        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+        alertDialog.setTitle("Selected:");
+        alertDialog.setMessage(v.toString());
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Activate",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        System.out.println("Confirmed " + v.toString());
+                        dialog.dismiss();
+                    }
+                });
+        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Delete",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        new Garage(mActivity).remove(i);
+                        loadGarage();
+                        dialog.dismiss();
+                    }
+                });
+        alertDialog.show();
     }
 
     @Override
