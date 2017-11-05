@@ -23,16 +23,12 @@ public class Garage {
         mActivity = activity;
     }
 
-    public void saveVehicle(Vehicle v) {
-        List<Vehicle> cars = loadVehicles();
-        if (cars==null)
-            cars = new ArrayList<Vehicle>();
-        cars.add(v);
+    public void saveVehicles(List<Vehicle> vehicles) {
         SharedPreferences appSharedPrefs = PreferenceManager
                 .getDefaultSharedPreferences(mActivity.getApplicationContext());
         SharedPreferences.Editor prefsEditor = appSharedPrefs.edit();
         Gson gson = new Gson();
-        String json = gson.toJson(cars);
+        String json = gson.toJson(vehicles);
         prefsEditor.putString("MyGarage", json);
         prefsEditor.commit();
     }
@@ -45,6 +41,19 @@ public class Garage {
         Type type = new TypeToken<List<Vehicle>>(){}.getType();
         List<Vehicle> cars = gson.fromJson(json, type);
         return cars;
+    }
+
+    public void add(Vehicle v) {
+        List<Vehicle> cars = loadVehicles();
+        if (cars==null)
+            cars = new ArrayList<Vehicle>();
+        cars.add(v);
+    }
+
+    public void remove(int index) {
+        List<Vehicle> cars = loadVehicles();
+        cars.remove(index);
+        saveVehicles(cars);
     }
 
     public void clear() {

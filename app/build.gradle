@@ -29,4 +29,5 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     implementation 'com.google.android.gms:play-services-maps:11.4.2'
     implementation files('libs/java-json.jar')
+    implementation 'com.android.support:design:26.1.0'
 }

@@ -21,7 +21,7 @@ public class Dropdown {
 
     public void updateOptions(String[] options) {
         ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(
-                mActivity, android.R.layout.simple_spinner_item, options );
+                mActivity, android.R.layout.simple_spinner_dropdown_item, options );
         spinner.setAdapter(spinnerArrayAdapter);
     }
 }

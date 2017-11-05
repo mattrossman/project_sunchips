@@ -6,6 +6,8 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import com.example.andrew.tutorial.CarManager.AddCarActivity;
 import com.example.andrew.tutorial.CarManager.Garage;
@@ -38,7 +40,18 @@ public class DisplayCarActivity extends AppCompatActivity {
     public void loadGarage(){
         System.out.println("Loading cars");
         List<Vehicle> cars = new Garage(this).loadVehicles();
+        display(cars);
         System.out.println(cars);
+    }
+
+    private void display(List<Vehicle> cars) {
+        if (cars!=null) {
+            ArrayAdapter<Vehicle> adapter = new ArrayAdapter<Vehicle>(this,
+                    android.R.layout.simple_list_item_1, cars);
+
+            ListView carList = (ListView) findViewById(R.id.garageList);
+            carList.setAdapter(adapter);
+        }
     }
 
     public void addCar(View view){

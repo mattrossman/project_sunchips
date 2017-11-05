@@ -1,10 +1,6 @@
 package com.example.andrew.tutorial.CarManager;
 
 import android.app.Activity;
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
-import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -12,17 +8,14 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.andrew.tutorial.DisplayCarActivity;
 import com.example.andrew.tutorial.R;
 import com.example.andrew.tutorial.Vehicle;
-import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.XML;
 
-import java.io.FileOutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -99,10 +92,10 @@ class PriceRequest extends RequestTask {
 
     @Override
     public void handler(JSONObject obj) throws JSONException {
-        TextView tvPrice = (TextView) mActivity.findViewById(R.id.textView);
+        // Do something with the gas price here
         JSONObject prices = obj.getJSONObject("fuelPrices");
         String price = Double.toString(prices.getDouble(grade));
-        tvPrice.setText(price);
+        System.out.println("$"+price);
     }
 
     public void request() {
@@ -267,7 +260,7 @@ class MPGRequest extends RequestTask {
         toAdd.setModel(AddCarActivity.model);
         toAdd.setOption(AddCarActivity.option);
 
-        new Garage(mActivity).saveVehicle(toAdd);
+        new Garage(mActivity).add(toAdd);
         System.out.println("The MPG is "+Double.toString(mpg));
     }
 
