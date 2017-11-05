@@ -91,4 +91,11 @@
         android:orientation="vertical"
         app:layout_constraintGuide_begin="20dp" />
 
+    <TextView
+        android:id="@+id/savings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="30dp"
+        tools:layout_editor_absoluteY="25dp" />
+
 </android.support.constraint.ConstraintLayout>

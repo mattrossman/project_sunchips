@@ -6,7 +6,6 @@ import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.database.sqlite.SQLiteDatabase;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -19,18 +18,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-<<<<<<< HEAD
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.List;
-=======
 import com.example.andrew.tutorial.CarManager.RequestTask;
 
 import org.json.JSONException;
 import org.json.JSONObject;
->>>>>>> development
 
 
 public class MainActivity extends AppCompatActivity implements LocationListener{
@@ -139,6 +135,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
                 activeTrip.addDistance();
                 TextView activeTripReport = (TextView) findViewById(R.id.activeTripReport);
                 activeTripReport.setText(Double.toString(activeTrip.getDistance()) + " miles, $" + Double.toString(activeTrip.getCost()));
+                TextView savingsReport = (TextView) findViewById(R.id.savings);
+                savingsReport.setText("An electric car would save $" + Double.toString(activeTrip.compareElectric()));
             }
             else{
                 activeTrip.setStart(location);
