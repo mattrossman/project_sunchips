@@ -2,10 +2,14 @@ package com.example.andrew.tutorial;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.content.ContentValues;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.database.sqlite.SQLiteDatabase;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,6 +17,12 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity implements LocationListener{
@@ -29,7 +39,15 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         if(overallReport == null) {
-            overallReport = new Report();
+            SharedPreferences appSharedPrefs = PreferenceManager
+                    .getDefaultSharedPreferences(getApplicationContext());
+            Gson gson = new Gson();
+            String json = appSharedPrefs.getString("overallReport", "");
+            Type type = new TypeToken<Report>(){}.getType();
+            overallReport = gson.fromJson(json, type);
+            if(overallReport == null) {
+                overallReport = new Report();
+            }
         }
 
     }
@@ -98,7 +116,11 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
         }
         System.out.println("Adding");
         overallReport.getReport(activeTrip.getMonth()).getReport(activeTrip.getDay()).addTrip(activeTrip);
+        saveReports();
     }
+
+    public void saveReports(){
+       }
 
     public void onLocationChanged(Location location){
         if(isOnTrip) {
