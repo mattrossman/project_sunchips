@@ -1,6 +1,7 @@
 package com.example.andrew.tutorial;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -13,6 +14,11 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.example.andrew.tutorial.CarManager.RequestTask;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 public class MainActivity extends AppCompatActivity implements LocationListener{
@@ -30,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
         setContentView(R.layout.activity_main);
         overallReport = new Report();
 
+        new PriceRequest(this, "regular").request();
     }
 
     @Override
@@ -202,3 +209,26 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
     }
 
 }
+
+
+
+class PriceRequest extends RequestTask {
+    private String grade;
+    public PriceRequest(Activity activity, String grade) {
+        super(activity);
+        this.grade = grade;
+    }
+
+    @Override
+    public void handler(JSONObject obj) throws JSONException {
+        // Do something with the gas price here
+        JSONObject prices = obj.getJSONObject("fuelPrices");
+        double price = prices.getDouble(grade);
+        Trip.gasPrice = (float) price;
+    }
+
+    public void request() {
+        sendRequest("http://www.fueleconomy.gov/ws/rest/fuelprices");
+    }
+}
+

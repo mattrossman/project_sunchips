@@ -11,6 +11,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.andrew.tutorial.DisplayCarActivity;
 import com.example.andrew.tutorial.R;
+import com.example.andrew.tutorial.Trip;
 import com.example.andrew.tutorial.Vehicle;
 
 import org.json.JSONArray;
@@ -82,26 +83,6 @@ public class RequestTask {
             System.out.println(je.toString());
             return null;
         }
-    }
-}
-
-class PriceRequest extends RequestTask {
-    private String grade;
-    public PriceRequest(Activity activity, String grade) {
-        super(activity);
-        this.grade = grade;
-    }
-
-    @Override
-    public void handler(JSONObject obj) throws JSONException {
-        // Do something with the gas price here
-        JSONObject prices = obj.getJSONObject("fuelPrices");
-        String price = Double.toString(prices.getDouble(grade));
-        System.out.println("$"+price);
-    }
-
-    public void request() {
-        sendRequest("http://www.fueleconomy.gov/ws/rest/fuelprices");
     }
 }
 

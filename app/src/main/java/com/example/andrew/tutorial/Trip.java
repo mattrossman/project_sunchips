@@ -1,12 +1,17 @@
 package com.example.andrew.tutorial;
 
+import android.app.Activity;
 import android.location.Location;
 import android.location.LocationManager;
 
 
+import com.example.andrew.tutorial.CarManager.RequestTask;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.sql.Time;
@@ -29,7 +34,8 @@ public class Trip {
     String date;
 
     private static final String provider = LocationManager.GPS_PROVIDER;
-    private static float gasPrice = (float)3.00;
+    public static float gasPrice = (float)3.00; // just a default, will be overwritten by up to date avg
+    public static double electricRate = 0.33; // dollars per mile
 
 
     public Trip(Vehicle vehicle){
@@ -72,6 +78,10 @@ public class Trip {
     public double getCost(){
         double cost = (double)(distance/vehicle.getMileage()*gasPrice);
         return (double)Math.round(cost*100)/100;
+    }
+
+    public double getElectricCost() {
+        return distance*electricRate;
     }
 
     public void addDistance(){
